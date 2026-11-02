@@ -1,38 +1,40 @@
 # 活動。category は英字大文字で表示されます。url があればカード全体がリンクになります。
-- id: community
-  category: Community
-  period: "2023 —"
-  title: プログラミングサークル 代表
-  description: 週1回の勉強会を運営。初心者向けの Web 開発入門講座を担当し、メンバー約30名の学習を支援。
+- id: reproduction
+  category: Research
+  period: "2026 —"
+  title: 先行研究の再現を1本ずつ公開
+  description: 言語モデルの内部を調べた論文を、公式コードで再現して記録・スライドごと公開しています。1本目は grokking（Nanda et al., 2023）。
+  url: https://github.com/c0a22080fa/prior-work-reproduction
   order: 1
-- id: talk
-  category: Talk
-  period: "2025"
-  title: 学内 LT 会で登壇
-  description: 「計測してから最適化する」をテーマに、研究と個人開発の両面から発表。
-  order: 2
-- id: oss
-  category: OSS
-  period: "2024 —"
-  title: OSS へのコントリビュート
-  description: 利用している UI ライブラリのバグ修正とドキュメント改善の PR がマージされました。
-  order: 3
-- id: writing
+- id: glossary
   category: Writing
+  period: "2026 —"
+  title: 研究で出てきた言葉の用語集
+  description: 再現実験で出てきた30の用語を、専門外の人にも伝わるようにかみくだいて説明しています。論文を進めるたびに追加。
+  url: https://github.com/c0a22080fa/prior-work-reproduction
+  order: 2
+- id: notes
+  category: Notes
   period: "2024 —"
-  title: 技術記事の執筆
-  description: Zenn で学んだことを記事化。React の再レンダリングに関する記事が 200 いいねを獲得。
-  url: https://zenn.dev/your-id
-  order: 4
-- id: hackathon
-  category: Hackathon
+  title: 作りながら学んだことのノート
+  description: 「評価データの分け方も疑う」「原本は加工しない」など、作品づくりで気づいたことを18件のノートにまとめています。
+  order: 3
+- id: team-bingo
+  category: Team
   period: "2024"
-  title: ハッカソン参加
-  description: 4人チームで学内イベント予約システムを開発し、優秀賞を受賞。
+  title: 11人でのチーム開発
+  description: develop ブランチとプルリクエストを使い、地域イベント向けのWebアプリを並行開発。イベント本番で運用しました。
+  order: 4
+- id: team-game
+  category: Team
+  period: "2023"
+  title: 5人でのゲーム共同制作
+  description: 機能ごとに担当を分けて pygame のゲームを制作。障害物とゲームオーバー表示を担当しました。
+  url: https://github.com/c0a22080fa/ProjExD_05-1
   order: 5
-- id: mentoring
-  category: Mentoring
-  period: "2025 —"
-  title: 学部生のメンター
-  description: 研究室の後輩に対して、Git の使い方と開発環境構築のサポートを担当。
+- id: experiments
+  category: Making
+  period: "2024 —"
+  title: 気になった技術はまず作ってみる
+  description: スマートコントラクト、地図と天気API、マルチエージェントなど、授業外でも新しい技術を小さく作って確かめています。
   order: 6

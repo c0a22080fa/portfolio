@@ -1,0 +1,26 @@
+---
+title: 独自トークンを扱うWeb3アプリ
+number: "07"
+category: Web3
+year: "2024"
+summary: 独自のトークンをスマートコントラクトとして書き、Hardhat でテストとデプロイをしました。Next.js の画面からウォレットをつなぎ、持っているトークンの量を確認できます。
+period: "2024.11"
+role: 【個人開発 / 授業】
+tech: [Solidity, Hardhat, Next.js, TypeScript, ethers.js]
+thumbnailAlt: Web3アプリの画面
+order: 7
+links:
+  github: https://github.com/c0a22080fa/blockchainApp
+---
+## 構成
+
+1. **コントラクト**：送金と残高の管理を一から書いたトークンと、OpenZeppelin の ERC-20 を継承したトークンの2つ
+2. **テスト**：Hardhat で両方のコントラクトをテスト
+3. **デプロイ**：ローカル用とネットワーク用のスクリプト
+4. **画面**：Next.js でウォレットをつなぎ、トークンの残高を表示
+
+## 作ってみて
+
+一から書くと送金や残高の管理を自分で書く必要がありますが、標準の ERC-20 を継承すると数行で同じ役割を持たせられることを、両方作って確かめました。
+
+【何のために作ったか、どこまでできたか】

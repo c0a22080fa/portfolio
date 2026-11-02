@@ -1,17 +1,13 @@
 # 発表・論文。url があればタイトルがリンクになります。
-- id: pub-2026-03
-  date: "2026.03"
-  title: Webアプリケーションにおける再レンダリングコストの実行時計測手法
-  venue: ◯◯学会 第◯回 全国大会（口頭発表）
+- id: grokking-slides
+  date: "2026.10"
+  title: grokking の再現 ― 抜け道のない分け方で、課題の構造と練習量を変える
+  venue: 再現実験のまとめスライド（本編26枚・付録12枚、GitHub で公開）
+  url: https://github.com/c0a22080fa/prior-work-reproduction
   order: 1
-- id: pub-2025-09
-  date: "2025.09"
-  title: コンポーネント粒度でのプロファイリングによる性能ボトルネックの可視化
-  venue: ◯◯研究会 研究報告（査読なし）
+- id: ncd-report
+  date: "2026.06"
+  title: 圧縮距離（NCD）と最近傍法による青空文庫の著者分類
+  venue: 授業「知的情報処理」最終課題（コードと手順を公開）
+  url: https://github.com/c0a22080fa/chiteki-johoshori-final-ncd
   order: 2
-- id: talk-2025-06
-  date: "2025.06"
-  title: 研究テーマ紹介：レンダリング性能を計測してから最適化する
-  venue: 研究室ゼミ発表（スライド公開中）
-  url: https://speakerdeck.com/
-  order: 3

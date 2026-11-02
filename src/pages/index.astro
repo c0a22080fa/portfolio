@@ -71,7 +71,7 @@ const year = new Date().getFullYear();
     <div class="container columns">
       <SectionHead number="02" en="Skills" jp="スキル" />
       <div class="skills">
-        <p class="t-body c-muted reveal">業務や個人開発で継続的に使っている技術です。いずれも自分で設計・実装・デプロイまで行った経験があります。</p>
+        <p class="t-body c-muted reveal">研究・チーム開発・個人開発で使ってきた技術です。環境構築から実装、実験や運用まで、自分の手で動かしたものを載せています。</p>
         <ul class="skills__list reveal">
           {skills.map((s) => (
             <li class="skills__row">
@@ -125,7 +125,7 @@ const year = new Date().getFullYear();
     <div class="container">
       <div class="activities__head">
         <SectionHead number="05" en="Activities" jp="活動" />
-        <p class="t-body c-muted activities__intro reveal">開発以外にも、コミュニティ運営や登壇、OSS への貢献など、学んだことを人に渡す活動を続けています。</p>
+        <p class="t-body c-muted activities__intro reveal">作るだけでなく、論文を手で再現する、学んだ言葉をかみくだいて書き残す、チームで届けるといったことを続けています。</p>
       </div>
       <div class="activities__grid">{activities.map((a) => <ActivityCard {...a.data} />)}</div>
     </div>

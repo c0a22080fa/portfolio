@@ -1,0 +1,24 @@
+---
+title: 現在地の天気を地図に出すアプリ
+number: "08"
+category: Web App
+year: "2024"
+summary: 緯度と経度から天気APIで天気を取得し、地図上のマーカーに表示するWebアプリです。Docker で立ち上げられるようにしました。
+period: "2024.11"
+role: 【個人開発 / 授業】
+tech: [Python, Flask, folium, Docker]
+thumbnailAlt: 地図に天気を表示する画面
+order: 8
+links:
+  github: https://github.com/c0a22080fa/GPSMap_app
+---
+## 仕組み
+
+1. 画面から緯度と経度を受け取る
+2. Yahoo! の天気情報 API に問い合わせる
+3. 結果を「晴れ」「曇り」「雨」に分ける
+4. folium で地図を作り、現在地のマーカーに天気を表示する
+
+API キーはコードに直接書かず、置き換え用の文字にしてから公開しています。
+
+【何のために作ったか、どこまでできたか】

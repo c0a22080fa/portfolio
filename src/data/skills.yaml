@@ -1,21 +1,21 @@
 # スキル。category は英字大文字で表示されます。order が小さい順に並びます。
 - id: languages
   category: Languages
-  items: [TypeScript, JavaScript, Python, Go, SQL]
+  items: [Python, JavaScript, TypeScript, SQL, Solidity]
   order: 1
-- id: frontend
-  category: Frontend
-  items: [React, Next.js, HTML / CSS, Tailwind CSS, Vite]
+- id: ml
+  category: AI / ML
+  items: [PyTorch, PyTorch Geometric, scikit-learn, NetworkX, LangGraph, LangChain, OpenAI API]
   order: 2
-- id: backend
-  category: Backend
-  items: [Node.js, Express, PostgreSQL, Prisma, REST / GraphQL]
+- id: web
+  category: Web
+  items: [Flask, Next.js, React, HTML / CSS]
   order: 3
 - id: infra
-  category: Infra / Tools
-  items: [Docker, AWS, GitHub Actions, Vercel, Linux]
+  category: Infra / DB
+  items: [Docker, MySQL, Neo4j, GPU サーバー, Linux]
   order: 4
 - id: others
-  category: Others
-  items: [Figma, Git, Jest / Playwright, Notion]
+  category: Team / Tools
+  items: [Git, GitHub（ブランチ運用・プルリクエスト）, Hardhat]
   order: 5
