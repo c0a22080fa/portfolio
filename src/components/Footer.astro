@@ -1,0 +1,17 @@
+---
+/** 作品詳細ページなどで使う、白地の軽いフッター（トップページは Contact 内にフッターがある） */
+import profile from '../data/profile.json';
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container">
+    <hr class="rule" />
+    <div class="footer__row">
+      <span class="t-caption c-muted">© {year} {profile.nameEn}</span>
+      <a href="#top" class="t-nav">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer__row { display: flex; justify-content: space-between; align-items: center; padding: 24px 0 40px; }
+</style>

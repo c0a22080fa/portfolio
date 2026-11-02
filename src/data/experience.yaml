@@ -1,0 +1,26 @@
+# 経歴。order が小さい順（上から）に並びます。
+- id: intern-2026
+  date: "2026.08"
+  title: ◯◯株式会社 サマーインターン（Webエンジニア）
+  description: 社内向け管理画面のフロントエンド改善を担当。React コンポーネントの再設計で初期表示を約40%短縮しました。
+  order: 1
+- id: grad-2025
+  date: "2025.04"
+  title: ◯◯大学大学院 ◯◯研究科 入学
+  description: Webアプリケーションのレンダリング性能の最適化をテーマに研究を開始。
+  order: 2
+- id: hackathon-2024
+  date: "2024.10"
+  title: ◯◯ハッカソン 優秀賞
+  description: 学内イベント予約システムをチームで開発。要件定義とフロントエンド実装を担当。
+  order: 3
+- id: circle-2023
+  date: "2023.04"
+  title: プログラミングサークル 代表
+  description: 週1回の勉強会を運営し、Web開発の入門講座を担当。メンバーは約30名。
+  order: 4
+- id: univ-2021
+  date: "2021.04"
+  title: ◯◯大学 ◯◯学部 入学
+  description: 情報工学を専攻。2年次から Web 開発を独学で開始。
+  order: 5

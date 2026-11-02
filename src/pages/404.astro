@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import { withBase } from '../lib/url';
+---
+<Base title="404">
+  <section class="container nf">
+    <p class="t-label c-accent">404</p>
+    <h1 class="t-section-en">Page not found.</h1>
+    <p class="t-body c-muted">お探しのページは見つかりませんでした。</p>
+    <a href={withBase('/')} class="link"><span class="link__label">Back to home</span><span class="link__arrow">→</span></a>
+  </section>
+  <Footer />
+</Base>
+<style>
+  .nf { display: flex; flex-direction: column; gap: 20px; padding: 120px 0 160px; }
+</style>

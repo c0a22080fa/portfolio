@@ -1,0 +1,13 @@
+---
+interface Props { number: string; en: string; jp: string; }
+const { number, en, jp } = Astro.props;
+---
+<div class="section-head reveal">
+  <p class="t-num c-accent">{number}</p>
+  <h2 class="t-section-en">{en}</h2>
+  <p class="t-section-jp">{jp}</p>
+</div>
+<style>
+  .section-head { display: flex; flex-direction: column; gap: 8px; }
+  @media (min-width: 960px) { .section-head { gap: 12px; } }
+</style>

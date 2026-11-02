@@ -1,0 +1,31 @@
+---
+title: 技術ブログ / 記事サイト
+number: "03"
+category: Personal
+year: "2024"
+summary: 学んだことを記録するための個人ブログ。Markdown で執筆し、ビルド時に静的生成。Lighthouse のパフォーマンス スコア 100 を維持しています。
+period: 2024.05 —（運用中）
+role: 個人開発
+tech: [Astro, Markdown, Cloudflare Pages]
+thumbnail: /images/works/tech-blog.png
+order: 3
+links:
+  github: https://github.com/your-id/blog
+  demo: https://example.com
+---
+
+## 背景と課題
+
+学習メモが Notion に散らばり、後から探せなくなっていました。「書いたものを人に見せる」前提にすると文章の質も上がると考え、公開ブログに移行しました。
+
+## 設計と技術選定
+
+記事は Markdown ファイルとしてリポジトリに置き、ビルド時に静的 HTML を生成する構成にしました。JavaScript をほぼ配信しないため表示が速く、ホスティングも無料枠で済みます。
+
+## 工夫した点・苦労した点
+
+OGP 画像をビルド時に記事ごとに自動生成するようにし、SNS でシェアされた際の見栄えを揃えました。画像生成のタイミングをビルドに寄せることで、ランタイムの依存を増やさずに済みました。
+
+## 結果
+
+Lighthouse のパフォーマンス スコアは全ページで 100 を維持しています。公開した記事のうち、React の再レンダリングに関する記事が 200 いいねを超えました。

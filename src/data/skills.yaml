@@ -1,0 +1,21 @@
+# スキル。category は英字大文字で表示されます。order が小さい順に並びます。
+- id: languages
+  category: Languages
+  items: [TypeScript, JavaScript, Python, Go, SQL]
+  order: 1
+- id: frontend
+  category: Frontend
+  items: [React, Next.js, HTML / CSS, Tailwind CSS, Vite]
+  order: 2
+- id: backend
+  category: Backend
+  items: [Node.js, Express, PostgreSQL, Prisma, REST / GraphQL]
+  order: 3
+- id: infra
+  category: Infra / Tools
+  items: [Docker, AWS, GitHub Actions, Vercel, Linux]
+  order: 4
+- id: others
+  category: Others
+  items: [Figma, Git, Jest / Playwright, Notion]
+  order: 5

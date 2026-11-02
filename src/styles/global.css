@@ -1,0 +1,133 @@
+/* =========================================================
+   Design tokens — Figma の「Tokens」変数とテキストスタイルに対応
+   ========================================================= */
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f3f7fc;
+  --color-ink: #0f2447;
+  --color-muted: #5b6b85;
+  --color-line: #d9e2ef;
+  --color-accent: #2d6be4;
+  --color-image: #e6eef9;
+  --color-glow: #cce0ff;
+
+  --font-en: "DM Sans", "Inter", system-ui, sans-serif;
+  --font-label: "Inter", "DM Sans", system-ui, sans-serif;
+  --font-jp-head: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+  --font-jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+
+  --container: 1200px;
+  --gutter: 24px;
+  --section-y: 88px;
+  --side-col: 320px;
+  --radius: 8px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 960px) {
+  :root { --section-y: 140px; --gutter: 48px; --side-col: 340px; }
+}
+@media (min-width: 1280px) {
+  :root { --gutter: 120px; }
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+  background: var(--color-bg);
+  font-feature-settings: "palt";
+}
+img, svg, iframe { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, h4, p, figure, dl, dd { margin: 0; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+/* ---------- Layout ---------- */
+.container { width: min(100% - var(--gutter) * 2, var(--container)); margin-inline: auto; }
+.section { padding-block: var(--section-y); }
+.section--band { background: var(--color-surface); }
+.columns { display: grid; gap: 32px; }
+@media (min-width: 960px) {
+  .columns { grid-template-columns: var(--side-col) minmax(0, 1fr); gap: 0; align-items: start; }
+}
+.rule { height: 1px; background: var(--color-line); border: 0; margin: 0; }
+
+/* ---------- Typography (Figma text styles) ---------- */
+.t-display-en { font-family: var(--font-en); font-weight: 500; font-size: clamp(68px, 9vw, 128px); line-height: 0.92; letter-spacing: -0.03em; }
+.t-display-jp { font-family: var(--font-jp-head); font-weight: 500; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.3; letter-spacing: 0.03em; }
+.t-section-en { font-family: var(--font-en); font-weight: 500; font-size: clamp(48px, 4.5vw, 64px); line-height: 1; letter-spacing: -0.02em; }
+.t-section-jp { font-family: var(--font-jp-head); font-weight: 500; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.4; letter-spacing: 0.06em; color: var(--color-muted); }
+.t-h3 { font-family: var(--font-jp); font-weight: 700; font-size: 20px; line-height: 1.5; }
+.t-h3-jp { font-family: var(--font-jp-head); font-weight: 700; font-size: 22px; line-height: 1.5; letter-spacing: 0.02em; }
+.t-body-lg { font-size: 18px; line-height: 2; }
+.t-body { font-size: 15px; line-height: 1.9; }
+.t-body-md { font-size: 15px; line-height: 1.7; font-weight: 500; }
+.t-label { font-family: var(--font-label); font-weight: 500; font-size: 12px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; }
+.t-nav { font-family: var(--font-label); font-weight: 500; font-size: 14px; line-height: 1; letter-spacing: 0.02em; }
+.t-num { font-family: var(--font-en); font-weight: 500; font-size: 18px; line-height: 1; letter-spacing: 0.02em; }
+.t-caption { font-size: 13px; line-height: 1.7; letter-spacing: 0.02em; }
+.c-accent { color: var(--color-accent); }
+.c-muted { color: var(--color-muted); }
+
+/* ---------- Links ---------- */
+.link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-label); font-weight: 500; font-size: 14px; letter-spacing: 0.02em; }
+.link__label { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.link__arrow { color: var(--color-accent); transition: transform 0.25s var(--ease); }
+.link:hover .link__arrow { transform: translateX(3px); }
+
+/* ---------- Tag ---------- */
+.tag {
+  display: inline-block; padding: 6px 12px; border: 1px solid var(--color-line); border-radius: 999px;
+  font-family: var(--font-label); font-weight: 500; font-size: 12px; line-height: 1; letter-spacing: 0.02em;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- Image placeholder ---------- */
+.ph { position: relative; background: var(--color-image); border-radius: var(--radius); overflow: hidden; display: grid; place-items: center; }
+.ph--square { border-radius: 0; }
+.ph img { width: 100%; height: 100%; object-fit: cover; }
+.ph__label { font-family: var(--font-en); font-weight: 500; font-size: 18px; color: var(--color-muted); letter-spacing: 0.02em; }
+
+/* ---------- Scroll reveal ---------- */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- Prose (作品詳細の本文 / Markdown) ---------- */
+.prose { counter-reset: section; }
+.prose > * + * { margin-top: 1.6em; }
+.prose h2 {
+  counter-increment: section;
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--font-jp-head); font-weight: 700; font-size: 22px; line-height: 1.5; letter-spacing: 0.02em;
+  margin-top: 80px;
+}
+.prose h2::before { content: counter(section, decimal-leading-zero); font-family: var(--font-en); font-weight: 500; font-size: 18px; letter-spacing: 0.02em; color: var(--color-accent); }
+.prose h2 + * { margin-top: 24px; }
+.prose h3 { font-family: var(--font-jp); font-weight: 700; font-size: 18px; margin-top: 48px; }
+.prose p { font-size: 15px; line-height: 1.9; }
+.prose a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose ul { list-style: disc; } .prose ol { list-style: decimal; }
+.prose li + li { margin-top: 0.4em; }
+.prose blockquote { margin: 0; padding: 4px 0 4px 20px; border-left: 2px solid var(--color-accent); color: var(--color-muted); }
+.prose code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; background: var(--color-surface); padding: 0.15em 0.4em; border-radius: 4px; }
+.prose pre { background: var(--color-ink); color: #e9f0fb; padding: 20px 24px; border-radius: var(--radius); overflow-x: auto; font-size: 13px; line-height: 1.7; }
+.prose pre code { background: none; padding: 0; color: inherit; }
+.prose img { border-radius: var(--radius); }
+.prose hr { border: 0; height: 1px; background: var(--color-line); margin: 48px 0; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.prose th, .prose td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-line); }
+.prose th { font-weight: 500; color: var(--color-muted); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.prose .figure, .prose .slide-embed, .prose .stats { margin-top: 48px; }

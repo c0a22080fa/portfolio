@@ -1,0 +1,18 @@
+---
+/** 成果の数字。 <Stats items={[{ value: '12名', label: '利用者' }]} /> */
+interface Props { items: { value: string; label: string }[]; }
+const { items } = Astro.props;
+---
+<ul class="stats">
+  {items.map((s) => (
+    <li class="stats__item">
+      <span class="stats__value">{s.value}</span>
+      <span class="t-caption c-muted">{s.label}</span>
+    </li>
+  ))}
+</ul>
+<style>
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 32px; }
+  .stats__item { display: flex; flex-direction: column; gap: 8px; padding-top: 20px; border-top: 1px solid var(--color-line); }
+  .stats__value { font-family: var(--font-en); font-weight: 500; font-size: clamp(40px, 4.5vw, 64px); line-height: 1; letter-spacing: -0.02em; }
+</style>

@@ -1,0 +1,258 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Tag from '../components/Tag.astro';
+import ImageBox from '../components/ImageBox.astro';
+import WorkCard from '../components/WorkCard.astro';
+import ExpRow from '../components/ExpRow.astro';
+import ActivityCard from '../components/ActivityCard.astro';
+import profile from '../data/profile.json';
+
+const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
+const works = (await getCollection('works', ({ data }) => !data.draft)).sort(byOrder);
+const featured = works.find((w) => w.data.featured) ?? works[0];
+const rest = works.filter((w) => w !== featured);
+const skills = (await getCollection('skills')).sort(byOrder);
+const experience = (await getCollection('experience')).sort(byOrder);
+const activities = (await getCollection('activities')).sort(byOrder);
+const publications = (await getCollection('publications')).sort(byOrder);
+const researchEntry = (await getCollection('research'))[0];
+const Research = researchEntry ? (await render(researchEntry)).Content : null;
+
+const index = [
+  ['01', 'About', '#about'], ['02', 'Skills', '#skills'], ['03', 'Works', '#works'], ['04', 'Research', '#research'],
+  ['05', 'Activities', '#activities'], ['06', 'Experience', '#experience'], ['07', 'Contact', '#contact'],
+];
+const year = new Date().getFullYear();
+---
+<Base>
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__top">
+        <div class="hero__headline reveal">
+          <p class="t-label c-accent">{profile.eyebrow}</p>
+          <h1 class="t-display-en hero__name-en" set:html={profile.nameEn.replace(' ', '<br />')} />
+          <p class="t-display-jp">{profile.nameJa}</p>
+        </div>
+        <ul class="hero__index reveal">
+          {index.map(([n, label, href]) => (
+            <li><a href={href}><span class="t-num c-accent">{n}</span><span class="t-nav">{label}</span></a></li>
+          ))}
+        </ul>
+      </div>
+      <p class="t-body-lg hero__lead reveal">{profile.lead}</p>
+      <ul class="hero__meta reveal">{profile.meta.map((m) => <li class="t-caption c-muted">{m}</li>)}</ul>
+    </div>
+  </section>
+
+  <!-- ===== 01 About ===== -->
+  <section class="section" id="about">
+    <div class="container columns">
+      <SectionHead number="01" en="About" jp="自己紹介" />
+      <div class="about">
+        <div class="about__intro reveal">
+          <div class="about__photo"><ImageBox src={profile.portrait} alt="プロフィール写真" label="Portrait 3:4" ratio="3 / 4" square /></div>
+          <div class="about__text">{profile.about.map((p) => <p class="t-body">{p}</p>)}</div>
+        </div>
+        <dl class="deflist reveal">
+          {profile.facts.map((f) => (
+            <div class="deflist__row"><dt class="t-label c-muted">{f.label}</dt><dd class="t-body">{f.value}</dd></div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 Skills ===== -->
+  <section class="section section--band" id="skills">
+    <div class="container columns">
+      <SectionHead number="02" en="Skills" jp="スキル" />
+      <div class="skills">
+        <p class="t-body c-muted reveal">業務や個人開発で継続的に使っている技術です。いずれも自分で設計・実装・デプロイまで行った経験があります。</p>
+        <ul class="skills__list reveal">
+          {skills.map((s) => (
+            <li class="skills__row">
+              <span class="t-label c-muted">{s.data.category}</span>
+              <ul class="tags">{s.data.items.map((i) => <li><Tag label={i} /></li>)}</ul>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 Works ===== -->
+  <section class="section" id="works">
+    <div class="container works">
+      <div class="works__head">
+        <SectionHead number="03" en="Works" jp="制作実績" />
+        <p class="t-body c-muted works__intro reveal">個人開発・チーム開発で手がけた作品から{works.length}点を掲載しています。</p>
+      </div>
+      {featured && <WorkCard work={featured} featured />}
+      <div class="works__grid">{rest.map((w) => <WorkCard work={w} />)}</div>
+    </div>
+  </section>
+
+  <!-- ===== 04 Research ===== -->
+  {researchEntry && Research && (
+    <section class="section" id="research">
+      <div class="container columns">
+        <SectionHead number="04" en="Research" jp="研究" />
+        <div class="research">
+          <div class="research__intro reveal">
+            <div class="research__text">
+              <h3 class="t-h3-jp" set:html={researchEntry.data.title.replace(/\n/g, '<br />')} />
+              <p class="t-caption c-muted">{researchEntry.data.lab}</p>
+              <div class="research__body"><Research /></div>
+              <ul class="tags">{researchEntry.data.keywords.map((k) => <li><Tag label={k} /></li>)}</ul>
+            </div>
+            <div class="research__image"><ImageBox src={researchEntry.data.image} alt={researchEntry.data.imageAlt ?? ''} label="研究の概念図" ratio="4 / 3" /></div>
+          </div>
+          <div class="reveal">
+            <p class="t-label c-muted">Publications &amp; Talks</p>
+            <ul class="list">{publications.map((p) => <ExpRow date={p.data.date} title={p.data.title} description={p.data.venue} url={p.data.url} />)}</ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ===== 05 Activities ===== -->
+  <section class="section" id="activities">
+    <div class="container">
+      <div class="activities__head">
+        <SectionHead number="05" en="Activities" jp="活動" />
+        <p class="t-body c-muted activities__intro reveal">開発以外にも、コミュニティ運営や登壇、OSS への貢献など、学んだことを人に渡す活動を続けています。</p>
+      </div>
+      <div class="activities__grid">{activities.map((a) => <ActivityCard {...a.data} />)}</div>
+    </div>
+  </section>
+
+  <!-- ===== 06 Experience ===== -->
+  <section class="section" id="experience">
+    <div class="container columns">
+      <SectionHead number="06" en="Experience" jp="経歴" />
+      <ul class="list reveal">{experience.map((e) => <ExpRow date={e.data.date} title={e.data.title} description={e.data.description} />)}</ul>
+    </div>
+  </section>
+
+  <!-- ===== 07 Contact ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact__top">
+        <div class="contact__headline reveal">
+          <p class="t-label c-accent">07  /  Contact</p>
+          <p class="t-display-en">Let's talk.</p>
+        </div>
+        <div class="contact__body reveal">
+          <p class="t-body contact__text">{profile.contact.text}</p>
+          <a href={`mailto:${profile.contact.email}`} class="contact__email">{profile.contact.email}</a>
+          <ul class="contact__links">
+            {profile.social.map((s) => (
+              <li><a href={s.url} target="_blank" rel="noopener" class="link"><span class="link__label">{s.label}</span><span class="link__arrow">→</span></a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="contact__footer">
+        <span class="t-caption">© {year} {profile.nameEn}</span>
+        <span class="t-caption contact__credit">Designed &amp; built by myself</span>
+        <a href="#top" class="t-nav">Back to top ↑</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: 64px 0 56px; }
+  @media (min-width: 960px) { .hero { padding: 128px 0 96px; } }
+  .hero__glow { position: absolute; z-index: 0; pointer-events: none; width: 520px; height: 520px; right: -120px; top: -160px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--color-glow) 90%, transparent), transparent); filter: blur(60px); }
+  @media (min-width: 960px) { .hero__glow { width: 900px; height: 900px; right: -200px; top: -300px; } }
+  .hero__inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 40px; }
+  @media (min-width: 960px) { .hero__inner { gap: 80px; } }
+  .hero__top { display: flex; flex-direction: column; gap: 40px; }
+  @media (min-width: 960px) { .hero__top { flex-direction: row; justify-content: space-between; align-items: flex-end; } }
+  .hero__headline { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 960px) { .hero__headline { gap: 40px; } }
+  .hero__name-en { margin: 0; }
+  .hero__index { width: 100%; border-top: 1px solid var(--color-line); }
+  @media (min-width: 960px) { .hero__index { width: 280px; flex-shrink: 0; } }
+  .hero__index li { border-bottom: 1px solid var(--color-line); }
+  .hero__index a { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; transition: color 0.2s; }
+  .hero__index a:hover .t-nav { color: var(--color-accent); }
+  .hero__lead { max-width: 680px; font-size: 15px; line-height: 1.9; }
+  @media (min-width: 960px) { .hero__lead { font-size: 18px; line-height: 2; } }
+  .hero__meta { display: flex; flex-direction: column; gap: 4px; padding-top: 20px; border-top: 1px solid var(--color-line); }
+  @media (min-width: 960px) { .hero__meta { flex-direction: row; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--color-line); } }
+
+  /* About */
+  .about { display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 960px) { .about { gap: 56px; } }
+  .about__intro { display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 960px) { .about__intro { flex-direction: row; gap: 64px; align-items: flex-start; } }
+  .about__photo { width: 100%; }
+  @media (min-width: 960px) { .about__photo { width: 300px; flex-shrink: 0; } }
+  .about__text { display: flex; flex-direction: column; gap: 20px; }
+  @media (min-width: 960px) { .about__text { gap: 24px; } }
+  .deflist { border-top: 1px solid var(--color-line); }
+  .deflist__row { display: grid; gap: 8px; padding: 16px 0; border-bottom: 1px solid var(--color-line); }
+  @media (min-width: 960px) { .deflist__row { grid-template-columns: 208px minmax(0, 1fr); gap: 32px; padding: 20px 0; } .deflist dt { padding-top: 6px; } }
+
+  /* Skills */
+  .skills { display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 960px) { .skills { gap: 40px; } }
+  .skills__list { border-top: 1px solid var(--color-line); }
+  .skills__row { display: grid; gap: 14px; padding: 20px 0; border-bottom: 1px solid var(--color-line); }
+  @media (min-width: 960px) { .skills__row { grid-template-columns: 208px minmax(0, 1fr); gap: 32px; padding: 24px 0; } .skills__row .t-label { padding-top: 8px; } }
+
+  /* Works */
+  .works { display: flex; flex-direction: column; gap: 48px; }
+  @media (min-width: 960px) { .works { gap: 72px; } }
+  .works__head { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 960px) { .works__head { flex-direction: row; justify-content: space-between; align-items: flex-end; } .works__intro { max-width: 520px; } }
+  .works__grid { display: grid; gap: 48px; }
+  @media (min-width: 960px) { .works__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; } }
+
+  /* Research */
+  .research { display: flex; flex-direction: column; gap: 40px; }
+  @media (min-width: 960px) { .research { gap: 56px; } }
+  .research__intro { display: flex; flex-direction: column-reverse; gap: 32px; }
+  @media (min-width: 960px) { .research__intro { flex-direction: row; gap: 64px; align-items: flex-start; } }
+  .research__text { display: flex; flex-direction: column; gap: 16px; }
+  @media (min-width: 960px) { .research__text { gap: 20px; } }
+  .research__body { display: flex; flex-direction: column; gap: 16px; }
+  .research__image { width: 100%; }
+  @media (min-width: 960px) { .research__image { width: 320px; flex-shrink: 0; } }
+  .list { border-top: 1px solid var(--color-line); margin-top: 16px; }
+
+  /* Activities */
+  .activities__head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 32px; }
+  @media (min-width: 960px) { .activities__head { flex-direction: row; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; } .activities__intro { max-width: 520px; } }
+  .activities__grid { display: grid; gap: 16px; }
+  @media (min-width: 720px) { .activities__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } }
+  @media (min-width: 1080px) { .activities__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  /* Contact */
+  .contact { background: var(--color-ink); color: var(--color-bg); padding: 96px 0 40px; }
+  @media (min-width: 960px) { .contact { padding: 160px 0 40px; } }
+  .contact__top { display: flex; flex-direction: column; gap: 56px; }
+  @media (min-width: 960px) { .contact__top { flex-direction: row; justify-content: space-between; gap: 64px; } }
+  .contact__headline { display: flex; flex-direction: column; gap: 28px; }
+  @media (min-width: 960px) { .contact__headline { gap: 32px; } }
+  .contact__body { display: flex; flex-direction: column; gap: 28px; }
+  @media (min-width: 960px) { .contact__body { gap: 40px; max-width: 440px; } }
+  .contact__text { color: var(--color-line); }
+  .contact__email { font-family: var(--font-en); font-weight: 500; font-size: 26px; letter-spacing: -0.02em; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+  @media (min-width: 960px) { .contact__email { font-size: 36px; } }
+  .contact__email:hover { color: var(--color-glow); }
+  .contact__links { display: flex; flex-wrap: wrap; gap: 24px 32px; }
+  .contact__footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--color-muted); color: var(--color-muted); }
+  @media (min-width: 960px) { .contact__footer { margin-top: 64px; } }
+  .contact__footer a { color: var(--color-bg); }
+  .contact__credit { display: none; }
+  @media (min-width: 720px) { .contact__credit { display: inline; } }
+</style>

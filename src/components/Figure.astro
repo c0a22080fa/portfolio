@@ -1,0 +1,13 @@
+---
+/** MDX 内で使う図版。 <Figure src="/images/..." alt="..." caption="図1：..." /> */
+import ImageBox from './ImageBox.astro';
+interface Props { src?: string; alt?: string; caption?: string; ratio?: string; }
+const { src, alt = '', caption, ratio = '760 / 440' } = Astro.props;
+---
+<figure class="figure">
+  <ImageBox src={src} alt={alt} label="Figure" ratio={ratio} />
+  {caption && <figcaption class="t-caption c-muted">{caption}</figcaption>}
+</figure>
+<style>
+  .figure { display: flex; flex-direction: column; gap: 12px; }
+</style>

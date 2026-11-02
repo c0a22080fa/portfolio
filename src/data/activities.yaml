@@ -1,0 +1,38 @@
+# 活動。category は英字大文字で表示されます。url があればカード全体がリンクになります。
+- id: community
+  category: Community
+  period: "2023 —"
+  title: プログラミングサークル 代表
+  description: 週1回の勉強会を運営。初心者向けの Web 開発入門講座を担当し、メンバー約30名の学習を支援。
+  order: 1
+- id: talk
+  category: Talk
+  period: "2025"
+  title: 学内 LT 会で登壇
+  description: 「計測してから最適化する」をテーマに、研究と個人開発の両面から発表。
+  order: 2
+- id: oss
+  category: OSS
+  period: "2024 —"
+  title: OSS へのコントリビュート
+  description: 利用している UI ライブラリのバグ修正とドキュメント改善の PR がマージされました。
+  order: 3
+- id: writing
+  category: Writing
+  period: "2024 —"
+  title: 技術記事の執筆
+  description: Zenn で学んだことを記事化。React の再レンダリングに関する記事が 200 いいねを獲得。
+  url: https://zenn.dev/your-id
+  order: 4
+- id: hackathon
+  category: Hackathon
+  period: "2024"
+  title: ハッカソン参加
+  description: 4人チームで学内イベント予約システムを開発し、優秀賞を受賞。
+  order: 5
+- id: mentoring
+  category: Mentoring
+  period: "2025 —"
+  title: 学部生のメンター
+  description: 研究室の後輩に対して、Git の使い方と開発環境構築のサポートを担当。
+  order: 6

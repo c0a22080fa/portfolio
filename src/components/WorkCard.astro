@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ImageBox from './ImageBox.astro';
+import Tag from './Tag.astro';
+import { withBase } from '../lib/url';
+
+interface Props { work: CollectionEntry<'works'>; featured?: boolean; }
+const { work, featured = false } = Astro.props;
+const d = work.data;
+const href = withBase(`/works/${work.id}/`);
+---
+<article class:list={['work-card reveal', { 'work-card--featured': featured }]}>
+  <a href={href} class="work-card__image" aria-label={`${d.title} の詳細`}>
+    <ImageBox src={d.thumbnail} alt={d.thumbnailAlt ?? d.title} label={featured ? 'Screenshot 1200 × 640' : 'Screenshot 584 × 400'} ratio={featured ? '1200 / 640' : '584 / 400'} square />
+  </a>
+  <div class="work-card__meta">
+    <span class="t-num c-accent">{d.number}</span>
+    <span class="t-label c-muted">{d.category} — {d.year}</span>
+  </div>
+  <h3 class="t-h3-jp"><a href={href}>{d.title}</a></h3>
+  <p class="t-body c-muted">{d.summary}</p>
+  <ul class="tags">{d.tech.map((t) => <li><Tag label={t} /></li>)}</ul>
+  <a href={href} class="link"><span class="link__label">View project</span><span class="link__arrow">→</span></a>
+</article>
+<style>
+  .work-card { display: flex; flex-direction: column; gap: 14px; }
+  .work-card__image { display: block; overflow: hidden; }
+  .work-card__image :global(img) { transition: transform 0.7s var(--ease); }
+  .work-card:hover .work-card__image :global(img) { transform: scale(1.03); }
+  .work-card__meta { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+  .work-card h3 a:hover { color: var(--color-accent); }
+  .work-card .link { margin-top: 6px; }
+</style>
