@@ -1,6 +1,6 @@
 ---
 title: "グラフ学習による\nセレンディピティの発見"
-lab: 【大学名】大学院 【研究科】 【研究室名】（指導教員：【氏名】）
+lab: 東京工科大学大学院 バイオ・情報メディア研究科 サービスシステムデザイン研究室
 keywords: [Graph Neural Networks, H2GCN, Link Prediction, Serendipity, Bisociation]
 image: /images/research.png
 imageAlt: 研究の概念図
