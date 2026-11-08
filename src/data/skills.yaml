@@ -4,18 +4,26 @@
   items: [Python, JavaScript, TypeScript, SQL, Solidity]
   order: 1
 - id: ml
-  category: AI / ML
-  items: [PyTorch, PyTorch Geometric, scikit-learn, NetworkX, LangGraph, LangChain, OpenAI API]
+  category: Machine Learning
+  items: [PyTorch, PyTorch Geometric, scikit-learn, NetworkX]
   order: 2
-- id: web
-  category: Web
-  items: [Flask, Next.js, React, HTML / CSS]
+- id: genai
+  category: Generative AI / Speech
+  items: [Gemini API, OpenAI API, LangGraph, LangChain, AmiVoice（音声認識）]
   order: 3
+- id: web
+  category: Web / Mobile
+  items: [React Native, React, Next.js, Flask, HTML / CSS]
+  order: 4
+- id: testing
+  category: Testing / QA
+  items: [テストケース設計, 打鍵テスト, Jest（自動テスト）]
+  order: 5
 - id: infra
   category: Infra / DB
   items: [Docker, MySQL, Neo4j, GPU サーバー, Linux]
-  order: 4
+  order: 6
 - id: others
   category: Team / Tools
   items: [Git, GitHub（ブランチ運用・プルリクエスト）, Hardhat]
-  order: 5
+  order: 7
