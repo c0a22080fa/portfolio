@@ -9,33 +9,38 @@
   title: 東京工科大学大学院 バイオ・情報メディア研究科 コンピュータサイエンス専攻 入学
   description: グラフ学習を使ったセレンディピティ発見の研究を継続。
   order: 2
+- id: intern-ai
+  date: "2025.11"
+  title: 長期インターン｜AI チームへ
+  description: スマートフォンアプリの AI 機能の実装と運用を担当しています（現在も継続中）。
+  order: 3
 - id: research-2025
   date: "2025.09"
   title: セレンディピティ発見の研究を開始
   description: サービスシステムデザイン研究室で、似ていないもの同士のつながりに強いグラフ学習（H2GCN）を使った研究に取り組み始めました。
-  order: 3
-- id: intern
-  date: "【期間】"
-  title: 長期インターン｜【会社名】
-  description: 【担当したこと・使った技術・成果】
   order: 4
-- id: parttime
-  date: "【期間】"
-  title: アルバイトでの開発｜【会社名】
-  description: 【担当したこと・使った技術・成果】
+- id: intern-app
+  date: "2025.08"
+  title: 長期インターン｜スマートフォンアプリの運用チームへ
+  description: スマートフォンアプリの運用を3か月担当しました。
   order: 5
+- id: intern-qa
+  date: "2025.04"
+  title: 長期インターン開始｜CRM・業務支援ツールを開発する SaaS 企業
+  description: 品質保証チームに入り、4か月間テストを担当しました。
+  order: 6
 - id: bingo-2024
   date: "2024.08"
   title: 地域イベント向けビンゴWebアプリを5人で開発
   description: ログイン機構やイベント詳細、景品の表示などを担当。外部の方との連絡やイベントの企画・運営にも関わり、2024年11月のイベント本番で運用しました。
-  order: 6
+  order: 7
 - id: game-2023
   date: "2023.07"
   title: 5人でゲームを共同制作（チーム開発の演習）
   description: チーム開発を学ぶ授業の演習で、pygame の横スクロールゲームを制作。障害物とゲームオーバー表示を担当しました。
-  order: 7
+  order: 8
 - id: univ-2022
   date: "2022.04"
   title: 東京工科大学 コンピュータサイエンス学部 先進情報専攻 入学
   description: 情報系を専攻。プログラミングの授業で Python と GitHub を使い始めました。
-  order: 8
+  order: 9
