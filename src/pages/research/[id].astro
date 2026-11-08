@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import WorkDetail from '../../layouts/WorkDetail.astro';
+
+export async function getStaticPaths() {
+  const items = (await getCollection('works', ({ data }) => !data.draft && data.kind === 'research')).sort((a, b) => a.data.order - b.data.order);
+  return items.map((work, i) => ({
+    params: { id: work.id },
+    props: { work, prev: items.length > 1 ? (items[i - 1] ?? items.at(-1)) : undefined, next: items.length > 1 ? (items[i + 1] ?? items[0]) : undefined },
+  }));
+}
+---
+<WorkDetail {...Astro.props} />

@@ -7,9 +7,10 @@ summary: 言語モデルの中で数がどう表されているかを調べた�
 period: "2026.10"
 role: 個人（論文の読解・環境構築・実験・考察・発表資料）
 tech: [Python, PyTorch, Docker, GPU サーバー]
-thumbnail: /images/works/grokking.png
-thumbnailAlt: 練習問題の損失は早く下がり、見たことのない問題の損失は遅れて下がる学習曲線
-featured: true
+thumbnail: /images/works/grokking-circles.png
+thumbnailAlt: 4つの周波数の平面で、数字が円の上に時計のように並ぶ図。1増えるごとに決まった角度ずつ回る
+thumbnailFit: contain
+kind: research
 order: 1
 links:
   github: https://github.com/c0a22080fa/prior-work-reproduction
@@ -23,6 +24,8 @@ import Stats from '../../components/Stats.astro';
 
 grokking とは、練習問題はすぐ解けるようになるのに、見たことのない問題が解けるようになるのはずっと後になる、という現象です。論文が実際に何を測っていて、何がまだ分かっていないのかを確かめることを目的にしました。
 
+<Figure src="/images/works/grokking.png" alt="練習問題の損失は早く下がり、見たことのない問題の損失は遅れて下がる学習曲線" caption="図1：grokking。練習問題（青）はすぐ解けるが、見たことのない問題（橙）が解けるのはずっと後になる（公式コード）" ratio="1600 / 800" />
+
 ## 進め方
 
 1本の論文を「読む → 実装する → 実行する → 結果を見る → まとめる」の5段階で進めると決め、テンプレートにしています。
@@ -31,8 +34,6 @@ grokking とは、練習問題はすぐ解けるようになるのに、見た�
 2. 自作のコードで課題の構造を変え（普通の足し算、2つの時計、正59角形の回転と裏返し、でたらめな表）、モデルの中にできる形を比べた（5本）
 3. 論文と同じデータの分け方に、抜け道があることに気づいた
 4. 分け方を直して、課題と練習量（30〜60%）を変えて学習し直した（34本）
-
-<Figure src="/images/works/grokking-circles.png" alt="4つの周波数の平面で、数字が円の上に並ぶ図" caption="図1：数字は周波数の平面で円の上に並ぶ。1増えるごとに決まった角度ずつ回る（公式コード）" ratio="1 / 1" />
 
 ## 見つけた抜け道
 

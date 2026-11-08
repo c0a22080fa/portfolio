@@ -15,6 +15,8 @@ const works = defineCollection({
     tech: z.array(z.string()).default([]),
     thumbnail: z.string().optional(), // /images/works/xxx.png（public 配下）
     thumbnailAlt: z.string().optional(),
+    thumbnailFit: z.enum(['cover', 'contain']).default('cover'), // グラフや図は contain（切らずに全体を表示）
+    kind: z.enum(['work', 'research']).default('work'), // research にすると研究セクションに表示
     featured: z.boolean().default(false), // true にすると一覧で大きく表示
     order: z.number().default(99),
     links: z

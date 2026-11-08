@@ -7,11 +7,13 @@ import { withBase } from '../lib/url';
 interface Props { work: CollectionEntry<'works'>; featured?: boolean; }
 const { work, featured = false } = Astro.props;
 const d = work.data;
-const href = withBase(`/works/${work.id}/`);
+const isResearch = d.kind === 'research';
+const href = withBase(`/${isResearch ? 'research' : 'works'}/${work.id}/`);
+const contain = d.thumbnailFit === 'contain';
 ---
 <article class:list={['work-card reveal', { 'work-card--featured': featured }]}>
   <a href={href} class="work-card__image" aria-label={`${d.title} の詳細`}>
-    <ImageBox src={d.thumbnail} alt={d.thumbnailAlt ?? d.title} label={featured ? 'Screenshot 1200 × 640' : 'Screenshot 584 × 400'} ratio={featured ? '1200 / 640' : '584 / 400'} square />
+    <ImageBox src={d.thumbnail} alt={d.thumbnailAlt ?? d.title} label={featured ? 'Screenshot 1200 × 640' : 'Screenshot 584 × 400'} ratio={featured ? '1200 / 640' : '584 / 400'} fit={d.thumbnailFit} square={!contain} />
   </a>
   <div class="work-card__meta">
     <span class="t-num c-accent">{d.number}</span>
@@ -20,7 +22,7 @@ const href = withBase(`/works/${work.id}/`);
   <h3 class="t-h3-jp"><a href={href}>{d.title}</a></h3>
   <p class="t-body c-muted">{d.summary}</p>
   <ul class="tags">{d.tech.map((t) => <li><Tag label={t} /></li>)}</ul>
-  <a href={href} class="link"><span class="link__label">View project</span><span class="link__arrow">→</span></a>
+  <a href={href} class="link"><span class="link__label">{isResearch ? 'Read more' : 'View project'}</span><span class="link__arrow">→</span></a>
 </article>
 <style>
   .work-card { display: flex; flex-direction: column; gap: 14px; }

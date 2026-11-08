@@ -3,14 +3,16 @@
  * 画像が無い（または読み込めない）ときは淡い青の枠にラベルを表示する。
  * src を指定すると <img> を表示し、エラー時は自動で代替表示に切り替わる。
  */
-interface Props { src?: string; alt?: string; label?: string; ratio?: string; class?: string; square?: boolean; loading?: 'lazy' | 'eager'; }
-const { src, alt = '', label = 'Image', ratio = '16 / 10', class: cls = '', square = false, loading = 'lazy' } = Astro.props;
+interface Props { src?: string; alt?: string; label?: string; ratio?: string; class?: string; square?: boolean; loading?: 'lazy' | 'eager'; fit?: 'cover' | 'contain'; }
+const { src, alt = '', label = 'Image', ratio = '16 / 10', class: cls = '', square = false, loading = 'lazy', fit = 'cover' } = Astro.props;
 import { withBase } from '../lib/url';
 ---
-<div class:list={['ph', { 'ph--square': square }, cls]} style={`aspect-ratio: ${ratio}`}>
+<div class:list={['ph', { 'ph--square': square, 'ph--contain': fit === 'contain' && src }, cls]} style={`aspect-ratio: ${ratio}`}>
   <span class="ph__label" aria-hidden="true">{label}</span>
   {src && <img src={withBase(src)} alt={alt} loading={loading} onerror="this.remove()" />}
 </div>
 <style>
   .ph img { position: absolute; inset: 0; }
+  .ph--contain { background: #fff; border: 1px solid var(--color-line); }
+  .ph--contain img { object-fit: contain; padding: 4%; }
 </style>

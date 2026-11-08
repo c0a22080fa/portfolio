@@ -22,14 +22,14 @@
 - id: team-bingo
   category: Team
   period: "2024"
-  title: 11人でのチーム開発
-  description: develop ブランチとプルリクエストを使い、地域イベント向けのWebアプリを並行開発。イベント本番で運用しました。
+  title: 5人でのチーム開発
+  description: develop ブランチとプルリクエストを使い、地域イベント向けのWebアプリを並行開発。外部の方との連絡やイベントの企画・運営にも関わり、本番で運用しました。
   order: 4
 - id: team-game
   category: Team
   period: "2023"
   title: 5人でのゲーム共同制作
-  description: 機能ごとに担当を分けて pygame のゲームを制作。障害物とゲームオーバー表示を担当しました。
+  description: チーム開発を学ぶ授業の演習で、機能ごとに担当を分けて pygame のゲームを制作。障害物とゲームオーバー表示を担当しました。
   url: https://github.com/c0a22080fa/ProjExD_05-1
   order: 5
 - id: experiments

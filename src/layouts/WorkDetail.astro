@@ -1,0 +1,99 @@
+---
+/** 作品詳細・研究詳細ページの共通テンプレート */
+import { render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import Footer from '../components/Footer.astro';
+import ImageBox from '../components/ImageBox.astro';
+import { withBase } from '../lib/url';
+
+interface Props {
+  work: CollectionEntry<'works'>;
+  prev?: CollectionEntry<'works'>;
+  next?: CollectionEntry<'works'>;
+}
+const { work, prev, next } = Astro.props;
+const section = work.data.kind === 'research'
+  ? { label: 'Research', path: 'research', anchor: '/#research', all: 'All research' }
+  : { label: 'Works', path: 'works', anchor: '/#works', all: 'All works' };
+const d = work.data;
+const { Content } = await render(work);
+const links = [
+  d.links.github && ['GitHub', d.links.github],
+  d.links.demo && ['デモサイト', d.links.demo],
+  d.links.slides && ['発表スライド', d.links.slides],
+].filter(Boolean) as [string, string][];
+const meta = [
+  d.period && ['期間', d.period],
+  d.role && ['役割', d.role],
+  d.tech.length && ['技術', d.tech.join(' / ')],
+].filter(Boolean) as [string, string][];
+---
+<Base title={d.title} description={d.summary} ogImage={d.thumbnail}>
+  <article class="work">
+    <header class="container work__header">
+      <p class="work__crumb">
+        <a href={withBase(section.anchor)} class="t-label c-muted">{section.label}</a>
+        <span class="t-label" style="color: var(--color-line)">/</span>
+        <span class="t-num c-accent">{d.number}</span>
+        <span class="t-label c-muted">{d.category} — {d.year}</span>
+      </p>
+      <h1 class="t-display-jp">{d.title}</h1>
+      <p class="t-body-lg c-muted work__summary">{d.summary}</p>
+      <dl class="work__meta">
+        {meta.map(([l, v]) => <div><dt class="t-label c-muted">{l}</dt><dd class="t-body-md">{v}</dd></div>)}
+        {links.length > 0 && (
+          <div><dt class="t-label c-muted">リンク</dt><dd class="t-body-md work__links">{links.map(([l, u]) => <a href={u} target="_blank" rel="noopener">{l} ↗</a>)}</dd></div>
+        )}
+      </dl>
+    </header>
+
+    <div class="container work__hero">
+      <ImageBox src={d.thumbnail} alt={d.thumbnailAlt ?? d.title} label="Main screenshot 1200 × 680" ratio={d.thumbnailFit === 'contain' ? '16 / 9' : '1200 / 680'} fit={d.thumbnailFit} loading="eager" />
+    </div>
+
+    <div class="work__body prose">
+      <Content />
+    </div>
+
+    <nav class="container work__nav" aria-label="前後の作品">
+      <hr class="rule" />
+      <div class="work__nav-row">
+        {prev && prev.id !== work.id ? (
+          <a href={withBase(`/${section.path}/${prev.id}/`)} class="work__nav-item"><span class="t-label c-muted">← Prev</span><span class="t-h3">{prev.data.number}  {prev.data.title}</span></a>
+        ) : <span />}
+        {next && next.id !== work.id ? (
+          <a href={withBase(`/${section.path}/${next.id}/`)} class="work__nav-item work__nav-item--next"><span class="t-label c-muted">Next →</span><span class="t-h3">{next.data.number}  {next.data.title}</span></a>
+        ) : <span />}
+      </div>
+      <hr class="rule" />
+      <a href={withBase(section.anchor)} class="link work__all"><span class="link__label">{section.all}</span><span class="link__arrow">→</span></a>
+    </nav>
+  </article>
+  <Footer />
+</Base>
+
+<style>
+  .work__header { display: flex; flex-direction: column; gap: 24px; padding: 56px 0 40px; }
+  @media (min-width: 960px) { .work__header { gap: 40px; padding: 96px 0 64px; } }
+  .work__crumb { display: flex; align-items: center; gap: 12px; }
+  .work__summary { max-width: 760px; }
+  .work__meta { display: grid; gap: 20px; padding: 24px 0; border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
+  @media (min-width: 720px) { .work__meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1080px) { .work__meta { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; } }
+  .work__meta div { display: flex; flex-direction: column; gap: 8px; }
+  .work__links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  .work__links a:hover { color: var(--color-accent); }
+  .work__hero { padding-bottom: 56px; }
+  @media (min-width: 960px) { .work__hero { padding-bottom: 96px; } }
+  .work__body { width: min(100% - var(--gutter) * 2, 760px); margin-inline: auto; padding-bottom: 96px; }
+  @media (min-width: 960px) { .work__body { padding-bottom: 120px; } }
+  .work__body :global(h2:first-child) { margin-top: 0; }
+  .work__nav { padding-bottom: 64px; }
+  @media (min-width: 960px) { .work__nav { padding-bottom: 96px; } }
+  .work__nav-row { display: flex; flex-direction: column; gap: 24px; padding: 32px 0; }
+  @media (min-width: 720px) { .work__nav-row { flex-direction: row; justify-content: space-between; } }
+  .work__nav-item { display: flex; flex-direction: column; gap: 8px; }
+  .work__nav-item:hover .t-h3 { color: var(--color-accent); }
+  @media (min-width: 720px) { .work__nav-item--next { align-items: flex-end; text-align: right; } }
+  .work__all { margin-top: 24px; }
+</style>

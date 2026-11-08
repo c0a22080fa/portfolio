@@ -8,9 +8,12 @@ import WorkCard from '../components/WorkCard.astro';
 import ExpRow from '../components/ExpRow.astro';
 import ActivityCard from '../components/ActivityCard.astro';
 import profile from '../data/profile.json';
+import { withBase } from '../lib/url';
 
 const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
-const works = (await getCollection('works', ({ data }) => !data.draft)).sort(byOrder);
+const allWorks = (await getCollection('works', ({ data }) => !data.draft)).sort(byOrder);
+const works = allWorks.filter((w) => w.data.kind === 'work');
+const researchItems = allWorks.filter((w) => w.data.kind === 'research');
 const featured = works.find((w) => w.data.featured) ?? works[0];
 const rest = works.filter((w) => w !== featured);
 const skills = (await getCollection('skills')).sort(byOrder);
@@ -111,6 +114,25 @@ const year = new Date().getFullYear();
             </div>
             <div class="research__image"><ImageBox src={researchEntry.data.image} alt={researchEntry.data.imageAlt ?? ''} label="研究の概念図" ratio="4 / 3" /></div>
           </div>
+          {researchItems.length > 0 && (
+            <div class="research__projects">
+              <p class="t-label c-muted">Projects</p>
+              {researchItems.map((r) => (
+                <article class="rcard reveal">
+                  <a href={withBase(`/research/${r.id}/`)} class="rcard__image" aria-label={`${r.data.title} の詳細`}>
+                    <ImageBox src={r.data.thumbnail} alt={r.data.thumbnailAlt ?? r.data.title} label="Figure" ratio="1 / 1" fit={r.data.thumbnailFit} />
+                  </a>
+                  <div class="rcard__body">
+                    <p class="t-label c-accent">{r.data.category} — {r.data.year}</p>
+                    <h3 class="t-h3-jp"><a href={withBase(`/research/${r.id}/`)}>{r.data.title}</a></h3>
+                    <p class="t-body c-muted">{r.data.summary}</p>
+                    <ul class="tags">{r.data.tech.map((t) => <li><Tag label={t} /></li>)}</ul>
+                    <a href={withBase(`/research/${r.id}/`)} class="link"><span class="link__label">Read more</span><span class="link__arrow">→</span></a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
           <div class="reveal">
             <p class="t-label c-muted">Publications &amp; Talks</p>
             <ul class="list">{publications.map((p) => <ExpRow date={p.data.date} title={p.data.title} description={p.data.venue} url={p.data.url} />)}</ul>
@@ -228,6 +250,12 @@ const year = new Date().getFullYear();
   .research__image { width: 100%; }
   @media (min-width: 960px) { .research__image { width: 320px; flex-shrink: 0; } }
   .list { border-top: 1px solid var(--color-line); margin-top: 16px; }
+  .research__projects { display: flex; flex-direction: column; gap: 16px; }
+  .rcard { display: grid; gap: 20px; padding: 20px; background: var(--color-surface); border-radius: var(--radius); }
+  @media (min-width: 720px) { .rcard { grid-template-columns: 240px minmax(0, 1fr); gap: 32px; padding: 24px; align-items: start; } }
+  .rcard__image { display: block; }
+  .rcard__body { display: flex; flex-direction: column; gap: 12px; }
+  .rcard__body h3 a:hover { color: var(--color-accent); }
 
   /* Activities */
   .activities__head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 32px; }
