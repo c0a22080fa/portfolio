@@ -74,12 +74,13 @@ const year = new Date().getFullYear();
     <div class="container columns">
       <SectionHead number="02" en="Skills" jp="スキル" />
       <div class="skills">
-        <p class="t-body c-muted reveal">研究・チーム開発・個人開発で使ってきた技術です。環境構築から実装、実験や運用まで、自分の手で動かしたものを載せています。</p>
+        <p class="t-body c-muted reveal">研究・インターン・チーム開発・個人開発で使ってきた技術です。環境構築から実装、実験や運用まで、自分の手で動かしたものを載せています。</p>
+        <p class="skills__legend reveal"><Tag label="自信を持って使える" strong /><Tag label="使ったことがある" /></p>
         <ul class="skills__list reveal">
           {skills.map((s) => (
             <li class="skills__row">
               <span class="t-label c-muted">{s.data.category}</span>
-              <ul class="tags">{s.data.items.map((i) => <li><Tag label={i} /></li>)}</ul>
+              <ul class="tags">{s.data.items.map((i) => <li><Tag label={i} strong={s.data.strong.includes(i)} /></li>)}</ul>
             </li>
           ))}
         </ul>
@@ -228,6 +229,7 @@ const year = new Date().getFullYear();
   .skills { display: flex; flex-direction: column; gap: 32px; }
   @media (min-width: 960px) { .skills { gap: 40px; } }
   .skills__list { border-top: 1px solid var(--color-line); }
+  .skills__legend { display: flex; align-items: center; gap: 10px; margin-top: -16px; }
   .skills__row { display: grid; gap: 14px; padding: 20px 0; border-bottom: 1px solid var(--color-line); }
   @media (min-width: 960px) { .skills__row { grid-template-columns: 208px minmax(0, 1fr); gap: 32px; padding: 24px 0; } .skills__row .t-label { padding-top: 8px; } }
 

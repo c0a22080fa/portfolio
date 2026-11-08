@@ -2,6 +2,7 @@
 - id: languages
   category: Languages
   items: [Python, JavaScript, TypeScript, SQL, Solidity]
+  strong: [Python]
   order: 1
 - id: ml
   category: Machine Learning
@@ -9,11 +10,12 @@
   order: 2
 - id: genai
   category: Generative AI / Speech
-  items: [Gemini API, OpenAI API, LangGraph, LangChain, AmiVoice（音声認識）]
+  items: [Gemini API, OpenAI API, LangGraph, LangChain, AmiVoice（音声認識）, iOS / Android 標準の音声認識]
   order: 3
 - id: web
   category: Web / Mobile
   items: [React Native, React, Next.js, Flask, HTML / CSS]
+  strong: [React Native]
   order: 4
 - id: testing
   category: Testing / QA
@@ -21,7 +23,8 @@
   order: 5
 - id: infra
   category: Infra / DB
-  items: [Docker, MySQL, Neo4j, GPU サーバー, Linux]
+  items: [Neo4j, Docker, MySQL, GPU サーバー, Linux]
+  strong: [Neo4j]
   order: 6
 - id: others
   category: Team / Tools

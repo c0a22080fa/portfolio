@@ -84,6 +84,7 @@ const skills = defineCollection({
   schema: z.object({
     category: z.string(),
     items: z.array(z.string()),
+    strong: z.array(z.string()).default([]), // 自信を持って使えるもの（濃い色のタグで表示）
     order: z.number().default(0),
   }),
 });

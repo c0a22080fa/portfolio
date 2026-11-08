@@ -1,4 +1,5 @@
 ---
-interface Props { label: string; }
+interface Props { label: string; strong?: boolean; }
+const { label, strong = false } = Astro.props;
 ---
-<span class="tag">{Astro.props.label}</span>
+<span class:list={['tag', { 'tag--strong': strong }]}>{label}</span>

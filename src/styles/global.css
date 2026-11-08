@@ -88,6 +88,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: inline-block; padding: 6px 12px; border: 1px solid var(--color-line); border-radius: 999px;
   font-family: var(--font-label); font-weight: 500; font-size: 12px; line-height: 1; letter-spacing: 0.02em;
 }
+.tag--strong { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-bg); }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* ---------- Image placeholder ---------- */
