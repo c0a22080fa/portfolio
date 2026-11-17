@@ -22,7 +22,7 @@
 - id: team-bingo
   category: Team
   period: "2024"
-  title: 5人でのチーム開発
+  title: 7人でのチーム開発
   description: develop ブランチとプルリクエストを使い、地域イベント向けのWebアプリを並行開発。外部の方との連絡やイベントの企画・運営にも関わり、本番で運用しました。
   order: 4
 - id: team-game
