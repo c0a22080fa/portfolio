@@ -148,7 +148,7 @@ const year = new Date().getFullYear();
     <div class="container">
       <div class="activities__head">
         <SectionHead number="05" en="Activities" jp="活動" />
-        <p class="t-body c-muted activities__intro reveal">作るだけでなく、論文を手で再現する、学んだ言葉をかみくだいて書き残す、チームで届けるといったことを続けています。</p>
+        <p class="t-body c-muted activities__intro reveal">研究と開発のほかに、地域や他大学など、研究室の外の人と一緒に取り組んできたことです。</p>
       </div>
       <div class="activities__grid">{activities.map((a) => <ActivityCard {...a.data} />)}</div>
     </div>
@@ -264,7 +264,6 @@ const year = new Date().getFullYear();
   @media (min-width: 960px) { .activities__head { flex-direction: row; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; } .activities__intro { max-width: 520px; } }
   .activities__grid { display: grid; gap: 16px; }
   @media (min-width: 720px) { .activities__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } }
-  @media (min-width: 1080px) { .activities__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
   /* Contact */
   .contact { background: var(--color-ink); color: var(--color-bg); padding: 96px 0 40px; }

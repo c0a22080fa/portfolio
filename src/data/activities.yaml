@@ -1,40 +1,28 @@
 # 活動。category は英字大文字で表示されます。url があればカード全体がリンクになります。
+- id: tamarism
+  category: Project
+  period: "2024.04 — 12"
+  title: タマリズムプロジェクトで観光まちづくり
+  description: 南多摩の5市・大学・企業による産官学民プロジェクトに7人チームで参加。デジタルビンゴラリー「タマビンゴ」を企画・開発し、日野市で10日間の実証イベントを運営しました。20チーム中 優秀賞。
+  url: https://tamarism.com/
+  order: 1
+- id: exchange
+  category: Community
+  period: "継続中"
+  title: 他大学の研究室との交流
+  description: 指導教員の紹介をきっかけに、他大学の研究報告会や交流会に続けて参加しています。機械工学など異分野の研究者と議論するなかで、ユーザーのコンテキストを考えたサービス設計という視点を得ました。
+  order: 2
+- id: kakenhi
+  category: Research
+  period: "2025.01 — 04"
+  title: 科研費プロジェクトへの参加
+  description: 「設計者間の共感を鍵としたアブダクションの発動機構の解明」に参加。人と AI の対話についての成果を、国際会議 ICAITD 2025 で筆頭著者として発表しました。
+  url: https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-22K12705/
+  order: 3
 - id: reproduction
   category: Research
   period: "2026 —"
   title: 先行研究の再現を1本ずつ公開
-  description: 言語モデルの内部を調べた論文を、公式コードで再現して記録・スライドごと公開しています。1本目は grokking（Nanda et al., 2023）。
+  description: 言語モデルの内部を調べた論文を公式コードで再現し、スライドと、出てきた言葉をかみくだいた用語集ごと公開しています。1本目は grokking（Nanda et al., 2023）。
   url: https://github.com/c0a22080fa/prior-work-reproduction
-  order: 1
-- id: glossary
-  category: Writing
-  period: "2026 —"
-  title: 研究で出てきた言葉の用語集
-  description: 再現実験で出てきた30の用語を、専門外の人にも伝わるようにかみくだいて説明しています。論文を進めるたびに追加。
-  url: https://github.com/c0a22080fa/prior-work-reproduction
-  order: 2
-- id: notes
-  category: Notes
-  period: "2024 —"
-  title: 作りながら学んだことのノート
-  description: 「評価データの分け方も疑う」「原本は加工しない」など、作品づくりで気づいたことを18件のノートにまとめています。
-  order: 3
-- id: team-bingo
-  category: Team
-  period: "2024"
-  title: 7人でのチーム開発
-  description: develop ブランチとプルリクエストを使い、地域イベント向けのWebアプリを並行開発。外部の方との連絡やイベントの企画・運営にも関わり、本番で運用しました。
   order: 4
-- id: team-game
-  category: Team
-  period: "2023"
-  title: 5人でのゲーム共同制作
-  description: チーム開発を学ぶ授業の演習で、機能ごとに担当を分けて pygame のゲームを制作。障害物とゲームオーバー表示を担当しました。
-  url: https://github.com/c0a22080fa/ProjExD_05-1
-  order: 5
-- id: experiments
-  category: Making
-  period: "2024 —"
-  title: 気になった技術はまず作ってみる
-  description: スマートコントラクト、地図と天気API、マルチエージェントなど、授業外でも新しい技術を小さく作って確かめています。
-  order: 6
