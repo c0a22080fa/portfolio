@@ -1,7 +1,7 @@
 # スキル。category は英字大文字で表示されます。order が小さい順に並びます。
 - id: languages
   category: Languages
-  items: [Python, JavaScript, TypeScript, SQL, Solidity]
+  items: [Python, TypeScript, JavaScript, SQL, Swift, C, Solidity]
   strong: [Python]
   order: 1
 - id: ml
@@ -14,16 +14,16 @@
   order: 3
 - id: web
   category: Web / Mobile
-  items: [React Native, React, Next.js, Flask, HTML / CSS]
+  items: [React Native, Expo, React, Next.js, Vue.js, Flask, HTML / CSS]
   strong: [React Native]
   order: 4
 - id: testing
   category: Testing / QA
-  items: [テストケース設計, 打鍵テスト, Jest（自動テスト）]
+  items: [テスト設計, 打鍵テスト, Postman（負荷テスト）, Jest（自動テスト）]
   order: 5
 - id: infra
   category: Infra / DB
-  items: [Neo4j, Docker, MySQL, GPU サーバー, Linux]
+  items: [Neo4j, Docker, MySQL, Firebase, GitHub Actions, GPU サーバー, Linux]
   strong: [Neo4j]
   order: 6
 - id: others
